@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+  <title>All RTC</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+		
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/rtc/newRtc}">New</a></li>
+        <li class="active"><a th:href="@{/allRtc}">All RTC</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> ...</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<CENTER><h2 class="h2"> <strong>ALL RTC</strong> </h2></CENTER>
+
+<div class="container">
+		
+<table border="1" class="table table-bordered table-striped " id="user-table">
+	<thead>
+		<tr>
+			<th>Rescuer Name</th>
+			<th>Rescuer Email</th>
+			<th>Command</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Route</th>
+			<th>Locatio</th>
+			<th>Type of RTC</th>
+			<th>Total No People Involved</th>
+			<th>Total No People Injured</th>
+			<th>Total No People Killed</th>
+			<th>Total No People Rescued</th>
+			<th>Total No Veh Involved</th>
+			<th>Vehicle Details</th>
+			<th>Probable Cause</th>
+			<th>Total Cash Recovered</th>			
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="rtc:${allRtc}">
+			<td th:text="${rtc.rescuerName}"></td>
+			<td th:text="${rtc.email}"></td>
+			<td th:text="${rtc.command}"></td>
+			<td th:text="${rtc.date}"></td>
+			<td th:text="${rtc.time}"></td>
+			<td th:text="${rtc.route}"></td>
+			<td th:text="${rtc.location}"></td>
+			<td th:text="${rtc.typeOfRTC}"></td>
+			<td th:text="${rtc.totalPeopleInvolved}"></td>
+			<td th:text="${rtc.totalPeopleIjured}"></td>
+			<td th:text="${rtc.totalPeopleKilled}"></td>
+			<td th:text="${rtc.totalPeopleRescued}"></td>
+			<td th:text="${rtc.totalVehicles}"></td>
+			<td th:text="${rtc.vehicleDetails}"></td>
+			<td th:text="${rtc.probableCause}"></td>
+			<td th:text="${rtc.totalCashRecovered}"></td>
+		</tr>
+	</tbody>
+</table>
+	  
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.js"></script>
+		<script>
+			$(document).ready(function(){
+			$("#user-table").DataTable({
+				'aoColumnDefs':[{
+					'bSortable':false,
+					'aTargets':[-1]
+				}]
+			});	
+			})
+		</script>
+
+</body>
+</html>

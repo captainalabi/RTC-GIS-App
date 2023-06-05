@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+  <title>New RTC</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a th:href="@{/home}">Home</a></li>
+        <li class="active"><a th:href="@{/rtc/newRtc}">New</a></li>
+        <li><a th:href="@{/allRtc}">All RTC</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> ...</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	
+  <h2>Record New RTC Case</h2>
+  
+  
+  <form class="form-horizontal"  th:object="${rtc}" th:action="@{/rtc/newRtc}" method="POST">
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Rescuer Name:</label>
+      <div class="col-sm-10">
+        <input type="text" th:field="*{rescuerName}" placeholder="Enter Your Name" name="name" class="form-control" id="name" required/>
+      </div>
+    </div>
+	  	    
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Rescuer Email:</label>
+      <div class="col-sm-10">
+        <input type="email" th:field="*{email}" placeholder="Enter Your Email" class="form-control" id="email" required>
+      </div>
+    </div>
+	  
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="command">Command:</label>
+      <div class="col-sm-10">
+        <input type="text" th:field="*{command}" placeholder="Enter Command" class="form-control" id="command" required>
+      </div>
+    </div>
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="route">Route:</label>
+      <div class="col-sm-10">
+        <input type="text" th:field="*{route}" placeholder="Enter Route" class="form-control" id="route" required>
+      </div>
+    </div>
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="location">Location:</label>
+      <div class="col-sm-10">
+        <input type="text" th:field="*{location}" placeholder="Enter Location" class="form-control" id="location" required>
+      </div>
+    </div>
+	  
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="type">Type:</label>
+      <div class="col-sm-10">
+<select th:field="*{typeOfRTC}" class="form-control" id="type" required>
+    <option th:value="''" selected>Select Type of RTC</option>
+    <option th:value="'Minor'" th:text="Minor"></option>
+    <option th:value="'Serious'" th:text="Serious"></option>
+    <option th:value="'Fatal'" th:text="Fatal"></option>
+</select>      
+      </div>
+    </div>
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="totalPeopleInvolved">Total People Involved:</label>
+      <div class="col-sm-10">
+<select th:field="*{totalPeopleInvolved}">
+	<option th:each="i : ${#numbers.sequence(1, 1000)}" th:value="${i}" th:text="${i}">
+    </option>
+</select>
+      
+      </div>
+    </div>
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="totalPeopleIjured">Total People Injured:</label>
+      <div class="col-sm-10">
+<select th:field="*{totalPeopleIjured}">
+	<option th:each="i : ${#numbers.sequence(0, 1000)}" th:value="${i}" th:text="${i}">
+    </option>
+</select>
+      </div>
+    </div>
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="totalPeopleKilled">Total People Killed:</label>
+      <div class="col-sm-10">
+<select th:field="*{totalPeopleKilled}">
+	<option th:each="i : ${#numbers.sequence(0, 1000)}" th:value="${i}" th:text="${i}">
+    </option>
+</select>     
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="totalPeopleRescued">Total People Rescued Alive:</label>
+      <div class="col-sm-10">
+<select th:field="*{totalPeopleRescued}">
+	<option th:each="i : ${#numbers.sequence(0, 1000)}" th:value="${i}" th:text="${i}">
+    </option>
+</select>
+      </div>
+    </div>    
+    	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="totalVehicles">Total Vehicles Involved:</label>
+      <div class="col-sm-10">
+      <select th:field="*{totalVehicles}">
+	<option th:each="i : ${#numbers.sequence(1, 1000)}" th:value="${i}" th:text="${i}">
+    </option>
+</select>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="vehicleDetails">Vehicles Details:</label>
+      <div class="col-sm-10">
+        <input type="text" th:field="*{vehicleDetails}" placeholder="Enter Vehicles Details" class="form-control" id="vehicleDetails" required/>
+      </div>
+    </div>
+	  
+	  <div class="form-group">
+      <label class="control-label col-sm-2" for="probableCause">Probable cause(s):</label>
+      <div class="col-sm-10">
+        <input type="text" th:field="*{probableCause}" placeholder="Enter Probable cause(s)" class="form-control" id="probableCause" required/>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="totalCashRecovered">Total Cash recovered:</label>
+      <div class="col-sm-10">
+<select th:field="*{totalCashRecovered}">
+	<option th:each="i : ${#numbers.sequence(1, 1000)}" th:value="${i}" th:text="${i}">
+    </option>
+</select>
+      </div>
+    </div>
+    
+	  <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+        
+    <input type="hidden" "${rtc.id}"/>
+  </form>
+	  
+</div>
+
+</body>
+</html>
